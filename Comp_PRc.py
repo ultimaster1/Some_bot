@@ -73,7 +73,7 @@ class Tbot(object):
                                                   args=(dic, intersection, update, context,))
                 my_thred_while.start()
             except:
-                print('problem')
+                print('problem with start telegram bot')
 
         else:
             bot.sendMessage(chat_id=update.message.chat_id,
@@ -181,14 +181,14 @@ class Tbot(object):
                                 or diff_ask >= percent:
                             try:
                                 bot.sendMessage(chat_id=update.message.chat_id,
-                                                text=str(exch_name) + "\nвалютная пара: \n" + str(
-                                                    pair) + "\nразница между bid или ask price больше "
-                                                     + str(prc) + ", цена на битках bid - \n" + str(bid_bitqi)
-                                                     + "\nцена на другой бирже -\n" + str(
-                                                    bid_exch) + "\nРазница цен - " + str(diff_bid)
-                                                     + ", цена на битках ask - \n" + str(ask_bitqi)
-                                                     + "\nцена на другой бирже -\n" + str(
-                                                    ask_exch) + "\nРазница цен - " + str(diff_ask))
+                                                text=str(exch_name) + "\currency pair: \n" + str(
+                                                    pair) + "\ndifference beetween bid or ask price bigger then "
+                                                     + str(prc) + ", price on Bitqi bid - \n" + str(bid_bitqi)
+                                                     + "\nprice on another exchange -\n" + str(
+                                                    bid_exch) + "\nDifference of prices - " + str(diff_bid)
+                                                     + ", price on Bitqi ask - \n" + str(ask_bitqi)
+                                                     + "\nprice on another exchange -\n" + str(
+                                                    ask_exch) + "\nРDiffenrence of prices - " + str(diff_ask))
 
                                 kastil = (exch_name + pair)
                                 var_for_time[kastil] = datetime.now() + timedelta(minutes=5)
@@ -235,7 +235,7 @@ class Tbot(object):
             pair = dic[i]
 
         bot.sendMessage(chat_id=update.message.chat_id,
-                        text="Данные приняты, словарь данных выглядит следующим образом" + str(dic))
+                        text="Dict of data looks like:" + str(dic))
         ConversationHandler.END
         try:
             self.checking_and_activate(dic, update, context)
@@ -244,11 +244,11 @@ class Tbot(object):
 
     def help(self, update, context):
         bot.sendMessage(chat_id=update.message.chat_id,
-                        text="Вы воспользовались командой /help \nДля ввода параметров бирж воспользуйтесь командой /launch и следующей синтаксической конструкцией:\n"
-                             "название_биржы (валютная_пара:prc_или_val=процент_сравнения, другая_валютная_пара...);...\n"
-                             "пример ввода:\n /launch Exmo(BTC/USDT:prc=3,ETH/BTC:prc=1); Binance(BTC/USDT:prc=3,ETH/BTC:val=0.00000003)\nОбратите внимание на то, что список бирж, на которых доступно"
-                             " сравнение на данный момент ограничен такими биржами как Exmo,Binance и Bitfinex.\nПожалуйста, старайтесь избегать ошибок при вводе параметров\n "
-                             "Для прекращения работы программы воспользуйтесь командой /stop.")
+                        text="You used / help \ nFor / launch and the following syntax: \ n "
+                             "exchange_name (currency_pair: prc_or_val = percentage_of_comparison, other_currency_pair ...); ... \ n"
+                             "input example: \ n / start Exmo (BTC / USDT: prc = 3, ETH / BTC: prc = 1); Binance (BTC / USDT: prc = 3, ETH / BTC: val = 0.00000003) \ nPlease note that that list of exchanges
+                             "the comparison is currently limited to exchanges such as Exmo, Binance and Bitfinex. \ nPlease try to avoid errors when entering the parameters \ n"
+                             "To stop the program, use the / stop command."")
 
     def veiw_settings(self, update, context):
         f = open('value.txt')
